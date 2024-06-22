@@ -1,0 +1,26 @@
+services:
+  node-app:
+    volumes:
+      - ../src:/app/src:ro
+    ports:
+      - 5000:5000
+    build:
+      context: ../
+      dockerfile: Dockerfile
+      target: dev
+    env_file:
+      - ../env/backend.env
+
+  mongodb-dev:
+    image: "mongo"
+    ports:
+      - 27017:27017
+    volumes:
+      - data-dev:/data/db:rw
+    container_name: mongodb-dev
+    env_file:
+      - ../env/mongodb.env
+    
+
+volumes:
+  data-dev:
