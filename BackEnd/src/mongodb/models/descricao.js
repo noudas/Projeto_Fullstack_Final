@@ -1,3 +1,4 @@
+//Descricao.js
 const { model, Schema } = require('mongoose');
 
 const descricaoSchema = new Schema({
