@@ -1,4 +1,4 @@
-Aqui está o README atualizado com a instrução correta para inicializar o mobile usando `npm run android`:
+Aqui está o README atualizado com a seção para o link do Figma:
 
 ---
 
@@ -7,6 +7,7 @@ Aqui está o README atualizado com a instrução correta para inicializar o mobi
 ## Shem Shemesh
 
 **Shem Shemesh** é uma plataforma destinada a ensinar sobre o Holocausto.
+Projeto feito em 2024 - Faculdade Impacta - MBA FullStack Dev
 
 ## Índice
 
@@ -16,6 +17,7 @@ Aqui está o README atualizado com a instrução correta para inicializar o mobi
 - [Uso](#uso)
 - [Endpoints](#endpoints)
 - [Contribuição](#contribuicao)
+- [Design](#design)
 - [Licença](#licenca)
 
 ## Sobre
@@ -55,7 +57,7 @@ O **Shem Shemesh** é um projeto final fullstack que busca proporcionar uma ferr
 3. Configure o Docker:
 
     ```bash
-    docker-compose up
+    docker compose up --build
     ```
 
 ### Frontend Mobile
@@ -86,7 +88,7 @@ O **Shem Shemesh** é um projeto final fullstack que busca proporcionar uma ferr
 
     ```bash
     cd projeto-final-fullstack/BackEnd
-    npm run dev
+    docker compose up --build
     ```
 
 2. Inicie o aplicativo mobile:
@@ -156,6 +158,12 @@ O **Shem Shemesh** é um projeto final fullstack que busca proporcionar uma ferr
 3. Faça suas alterações e commit: `git commit -m 'Minha nova feature'`.
 4. Envie para o branch original: `git push origin minha-feature`.
 5. Crie um pull request.
+
+## Design
+
+O design do projeto está disponível no Figma. Você pode acessar através do link abaixo:
+
+[Link para o Design no Figma](https://www.figma.com/design/Vq2b6hOWH8PVAAmxntJaJU/FullStack-Projeto?node-id=784-1126&t=5V5eLo1Uqzg1xWDC-1)
 
 ## Licença
 
