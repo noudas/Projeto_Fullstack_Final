@@ -1,7 +1,3 @@
-Aqui está o README atualizado com a seção para o link do Figma:
-
----
-
 # Projeto Final Fullstack
 
 ## Shem Shemesh
