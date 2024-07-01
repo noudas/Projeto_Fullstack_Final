@@ -7,6 +7,8 @@ const path = require('path');
 const bodyParser = require("body-parser");
 const multer = require("multer");
 
+const cors = require("cors");
+
 // MongoDB
 const Sobrevivente = require('./mongodb/models/pessoa');
 const Descricao = require('./mongodb/models/descricao');
@@ -71,14 +73,47 @@ app.post('/v2/api/formdata', upload.single("imagem"), async (req,res) => {
 
 // CRUD - Read / Update / Delete
 // Tabela Sobrevivente
-app.get('/v2/api/pessoa', async (req,res) => {
-
+//Get por ID
+app.get('/v2/api/pessoa/:codigo', async (req, res) => {
     try {
-        const id = req.body.id;
-        const pessoa = await Sobrevivente.findById(id);
-        res.send({pessoa})
+        const codigo = req.params.codigo;
+        if (!codigo) {
+            return res.status(400).json({ message: "Codigo is required" });
+        }
+        const pessoa = await Sobrevivente.findOne({ codigo: codigo });
+        if (!pessoa) {
+            return res.status(404).json({ message: "Pessoa not found." });
+        }
+        const base64Image = pessoa.imagem.toString('base64');
+
+        res.status(200).json({
+           ...pessoa.toObject(),
+            imagem: `data:image/png;base64,${base64Image}`
+        });
     } catch (error) {
         console.error(error.message);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+//Get todos
+app.get('/v2/api/lista', async (req, res) => {
+    try {
+        const people = await Sobrevivente.find(); // Fetch all documents
+        
+        // Map over each person to convert their image to Base64
+        const peopleWithBase64Images = await Promise.all(people.map(async (pessoa) => {
+            const base64Image = pessoa.imagem.toString('base64');
+            return {
+               ...pessoa.toObject(),
+                imagem: `data:image/png;base64,${base64Image}`
+            };
+        }));
+        
+        res.status(200).json(peopleWithBase64Images); // Send the array of people with Base64 images as JSON
+    } catch (error) {
+        console.error("Error fetching people:", error.message);
+        res.status(500).json({ message: "Server error" });
     }
 });
 
@@ -105,14 +140,20 @@ app.delete('/v2/api/pessoa', async (req,res) => {
 
 
 //Tabela DescricaoPessoa
-app.get('/v2/api/descricao', async (req,res) => {
-
+app.get('/v2/api/descricao/:codigo', async (req,res) => {
     try {
-        const id = req.body.id;
-        const descricao = await Descricao.findById(id);
-        res.send({descricao})
+        const codigo = req.params.codigo;
+        if (!codigo) {
+            return res.status(400).json({ message: "Codigo is required" });
+        }
+        const descricao = await Descricao.findOne({ codigo: codigo });
+        if (!descricao) {
+            return res.status(404).json({ message: "Descricao not found" });
+        }
+        res.status(200).json({ descricao });
     } catch (error) {
         console.error(error.message);
+        res.status(500).json({ message: "Server error" });
     }
 });
 
@@ -138,14 +179,20 @@ app.delete('/v2/api/descricao', async (req,res) => {
 
 
 // Tabela Video
-app.get('/v2/api/video', async (req,res) => {
-
+app.get('/v2/api/video/:codigo', async (req,res) => {
     try {
-        const id = req.body.id;
-        const video = await Video.findById(id);
-        res.send({video})
+        const codigo = req.params.codigo;
+        if (!codigo) {
+            return res.status(400).json({ message: "Codigo is required" });
+        }
+        const video = await Video.findOne({ codigo: codigo });
+        if (!video) {
+            return res.status(404).json({ message: "Video not found" });
+        }
+        res.status(200).json({ video });
     } catch (error) {
         console.error(error.message);
+        res.status(500).json({ message: "Server error" });
     }
 });
 
