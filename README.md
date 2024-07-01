@@ -161,6 +161,8 @@ O design do projeto está disponível no Figma. Você pode acessar através do l
 
 [Link para o Design no Figma](https://www.figma.com/design/Vq2b6hOWH8PVAAmxntJaJU/FullStack-Projeto?node-id=784-1126&t=5V5eLo1Uqzg1xWDC-1)
 
+[Link para o BackLog do Projeto]([https://www.figma.com/design/Vq2b6hOWH8PVAAmxntJaJU/FullStack-Projeto?node-id=784-1126&t=5V5eLo1Uqzg1xWDC-1](https://www.figma.com/board/ElYdHoaBkTzLoqMbxRQ4TT/Untitled?node-id=0-1&t=Nv1r2LGKnNYTuZNF-1))
+
 ## Licença
 
 Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
